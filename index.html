@@ -113,6 +113,12 @@
       padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600;
       border: 1px solid rgba(255,255,255,0.15);
     }
+    .trip-details-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0.85rem; }
+    .field-label { display:block; font-size:0.72rem; font-weight:700; color:var(--gray-600); margin-bottom:0.35rem; }
+    .field-control { width:100%; min-height:42px; padding:0.55rem 0.65rem; border:1px solid var(--gray-300); border-radius:var(--radius); background:#fff; color:var(--gray-800); font:inherit; font-size:0.82rem; }
+    .field-help { margin-top:0.3rem; font-size:0.68rem; color:var(--gray-400); }
+    @media (max-width:768px) { .trip-details-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:420px) { .trip-details-grid { grid-template-columns:1fr; } }
     .hotel-card {
       display: flex; gap: 1rem; padding: 1rem; background: var(--gray-50);
       border-radius: var(--radius-lg); border: 1px solid var(--gray-100); transition: all 0.2s;
@@ -393,9 +399,47 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <h2>Dubai</h2>
-          <p>5 Nights / 6 Days &bull; Option 1</p>
+          <p id="trip-duration">5 Nights / 6 Days &bull; Option 1</p>
         </div>
         <div class="hero-tag">Best Seller</div>
+      </div>
+
+      <!-- Trip Details -->
+      <div class="card animate-fade-up delay-1">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-calendar-alt"></i> Trip Details</div>
+          <span class="card-badge badge-blue">5 Nights</span>
+        </div>
+        <div class="card-body">
+          <div class="trip-details-grid">
+            <div>
+              <label class="field-label" for="checkin-date">Check-in date</label>
+              <input class="field-control" type="date" id="checkin-date" onchange="updateTravelDates()">
+            </div>
+            <div>
+              <label class="field-label" for="checkout-date">Check-out date</label>
+              <input class="field-control" type="date" id="checkout-date" readonly aria-readonly="true">
+              <div class="field-help">Automatically set to five nights</div>
+            </div>
+            <div>
+              <label class="field-label" for="children">Children</label>
+              <select class="field-control" id="children" onchange="updateAll()">
+                <option value="0" selected>0 children</option>
+                <option value="1">1 child</option>
+                <option value="2">2 children</option>
+                <option value="3">3 children</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="infants">Infants</label>
+              <select class="field-control" id="infants" onchange="updateAll()">
+                <option value="0" selected>0 infants</option>
+                <option value="1">1 infant</option>
+                <option value="2">2 infants</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Hotel Section -->
@@ -533,7 +577,7 @@
           </div>
           <div class="price-divider"></div>
           <div class="price-row">
-            <span class="label">Hotel (5 nights)</span>
+            <span class="label" id="hotel-nights-label">Hotel (5 nights)</span>
             <span class="value" id="price-hotel">AED 1,836</span>
           </div>
           <div class="price-row">
@@ -561,6 +605,9 @@
           </button>
           <button class="btn btn-primary btn-block" onclick="publishPackage()">
             <i class="fas fa-share-alt"></i> Publish as Package
+          </button>
+          <button class="btn btn-outline btn-block" onclick="openPrintPreview()">
+            <i class="fas fa-file-pdf"></i> Print / Save PDF
           </button>
         </div>
         <div class="summary-section">
@@ -710,14 +757,52 @@
       selectedActivities: ['desert', 'citytour', 'cruise', 'burj'],
       selectedTransfers: ['airport'],
       addons: [],
+      children: 0,
+      infants: 0,
+      startDate: '',
     };
 
     // ===================== INIT =====================
     function init() {
+      setDefaultDates();
       restoreSharedQuote();
+      syncTravelControls();
       renderTransfers();
       renderAddons();
       renderItinerary();
+      updateAll();
+    }
+
+    function toDateInputValue(date) {
+      const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+      return local.toISOString().slice(0, 10);
+    }
+
+    function addDays(dateValue, days) {
+      const date = new Date(dateValue + 'T12:00:00');
+      date.setDate(date.getDate() + days);
+      return toDateInputValue(date);
+    }
+
+    function setDefaultDates() {
+      if (state.startDate) return;
+      const date = new Date();
+      date.setDate(date.getDate() + 30);
+      state.startDate = toDateInputValue(date);
+    }
+
+    function syncTravelControls() {
+      document.getElementById('checkin-date').value = state.startDate;
+      document.getElementById('checkout-date').value = addDays(state.startDate, 5);
+      document.getElementById('children').value = String(state.children);
+      document.getElementById('infants').value = String(state.infants);
+    }
+
+    function updateTravelDates() {
+      const value = document.getElementById('checkin-date').value;
+      if (!value) return;
+      state.startDate = value;
+      syncTravelControls();
       updateAll();
     }
 
@@ -928,26 +1013,30 @@
     function updateAll() {
       const travelers = parseInt(document.getElementById('travelers').value);
       state.travelers = travelers;
+      state.children = parseInt(document.getElementById('children').value);
+      state.infants = parseInt(document.getElementById('infants').value);
       state.insurance = document.getElementById('insurance').checked;
 
       const nights = 5;
+      const chargedGuests = travelers + (state.children * 0.5);
+      const transferGuests = travelers + state.children;
       const room = state.hotel.rooms[state.roomIndex];
-      const roomCount = Math.max(1, Math.ceil(travelers / 2));
+      const roomCount = Math.max(1, Math.ceil((travelers + state.children) / 2));
       const hotelTotal = (state.hotel.price + room.priceMod) * nights * roomCount;
 
       let activityTotal = 0;
       state.addons.forEach(id => {
         const act = allActivities.find(a => a.id === id);
-        if (act) activityTotal += act.price * travelers;
+        if (act) activityTotal += Math.round(act.price * chargedGuests);
       });
 
       let transferTotal = 0;
       state.selectedTransfers.forEach(id => {
         const t = transferOptions.find(tr => tr.id === id);
-        if (t && !t.included) transferTotal += t.price * travelers;
+        if (t && !t.included) transferTotal += t.price * transferGuests;
       });
 
-      const insuranceTotal = state.insurance ? 25 * travelers : 0;
+      const insuranceTotal = state.insurance ? 25 * (travelers + state.children + state.infants) : 0;
       const subtotal = hotelTotal + activityTotal + transferTotal + insuranceTotal;
       const savings = Math.round(hotelTotal * 0.10);
       const grandTotal = subtotal - savings;
@@ -955,6 +1044,7 @@
       // Update sidebar
       document.getElementById('market-price').textContent = 'AED ' + Math.round(subtotal).toLocaleString();
       document.getElementById('total-savings').textContent = '-AED ' + savings.toLocaleString();
+      document.getElementById('hotel-nights-label').textContent = 'Hotel (' + nights + ' nights, ' + roomCount + ' room' + (roomCount === 1 ? '' : 's') + ')';
       document.getElementById('price-hotel').textContent = 'AED ' + Math.round(hotelTotal).toLocaleString();
       document.getElementById('price-activities').textContent = 'AED ' + activityTotal.toLocaleString();
       document.getElementById('price-transfers').textContent = 'AED ' + transferTotal.toLocaleString();
@@ -978,7 +1068,8 @@
       const list = document.getElementById('trip-summary');
       let html = `
         <li>5 nights in Dubai</li>
-        <li>${Math.max(1, Math.ceil(state.travelers / 2))} room(s) for ${state.travelers} traveler(s)</li>
+        <li>${state.startDate} to ${addDays(state.startDate, 5)}</li>
+        <li>${Math.max(1, Math.ceil((state.travelers + state.children) / 2))} room(s): ${state.travelers} adult(s), ${state.children} child(ren), ${state.infants} infant(s)</li>
         <li>Stay at ${state.hotel.name} (${state.hotel.stars}&#9733;)</li>
         <li>Room: ${state.hotel.rooms[state.roomIndex].name}</li>
       `;
@@ -1022,6 +1113,9 @@
         hotelId: state.hotel.id,
         roomIndex: state.roomIndex,
         travelers: state.travelers,
+        children: state.children,
+        infants: state.infants,
+        startDate: state.startDate,
         insurance: state.insurance,
         transferId: state.selectedTransfers[0],
         addons: [...state.addons],
@@ -1059,12 +1153,17 @@
           state.roomIndex = Math.min(Math.max(Number(data.roomIndex) || 0, 0), hotel.rooms.length - 1);
         }
         state.travelers = Math.min(Math.max(Number(data.travelers) || 2, 1), 4);
+        state.children = Math.min(Math.max(Number(data.children) || 0, 0), 3);
+        state.infants = Math.min(Math.max(Number(data.infants) || 0, 0), 2);
+        if (/^\d{4}-\d{2}-\d{2}$/.test(data.startDate || '')) state.startDate = data.startDate;
         state.insurance = Boolean(data.insurance);
         state.selectedTransfers = transferOptions.some(t => t.id === data.transferId) ? [data.transferId] : ['airport'];
         state.addons = Array.isArray(data.addons)
           ? data.addons.filter(id => allActivities.some(a => a.id === id && !a.included))
           : [];
         document.getElementById('travelers').value = String(state.travelers);
+        document.getElementById('children').value = String(state.children);
+        document.getElementById('infants').value = String(state.infants);
         document.getElementById('insurance').checked = state.insurance;
         document.getElementById('hotel-name').textContent = state.hotel.name;
         document.getElementById('hotel-img').src = state.hotel.img;
@@ -1073,6 +1172,32 @@
       } catch (error) {
         showToast('This shared quote link is invalid.', 'warning');
       }
+    }
+
+    function openPrintPreview() {
+      const preview = window.open('', '_blank');
+      if (!preview) {
+        showToast('Allow pop-ups to open the print preview.', 'warning');
+        return;
+      }
+      const summary = document.getElementById('trip-summary').innerHTML;
+      const itinerary = document.getElementById('itinerary').innerHTML;
+      const terms = document.querySelector('.terms-scroll').innerHTML;
+      const total = document.getElementById('total-price').textContent;
+      const priceRows = document.querySelector('.price-body').innerHTML;
+      preview.document.open();
+      preview.document.write(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Holidayz - Dubai Package</title>
+<style>
+body{font-family:Arial,sans-serif;color:#1f2937;margin:0;background:#f3f4f6}main{max-width:900px;margin:24px auto;background:#fff;padding:36px;box-sizing:border-box}.brand{display:flex;justify-content:space-between;border-bottom:3px solid #2563eb;padding-bottom:16px;margin-bottom:24px}.brand h1{margin:0;color:#1d4ed8}.muted{color:#6b7280}.grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}.panel{border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-bottom:18px}h2,h3,h4{color:#111827}.summary-list{padding-left:20px}.day-block{border-left:3px solid #dbeafe;padding-left:18px;margin:0 0 20px}.day-dot,.activity-actions{display:none}.day-badge,.activity-time,.activity-tag{display:inline-block;background:#dbeafe;color:#1d4ed8;padding:3px 7px;border-radius:5px;font-size:12px}.activity-card{padding:10px 0;border-bottom:1px solid #f3f4f6}.activity-name{font-weight:700;margin-top:6px}.activity-desc,.terms-item{font-size:13px;line-height:1.5;color:#4b5563}.price-row,.price-total{display:flex;justify-content:space-between;padding:6px 0}.strike{text-decoration:line-through}.savings{color:#059669}.price-divider{border-top:1px dashed #d1d5db;margin:8px 0}.amount{font-size:22px;font-weight:700}.print-actions{text-align:center;margin:20px}.print-actions button{background:#2563eb;color:#fff;border:0;border-radius:8px;padding:12px 22px;font-weight:700;cursor:pointer}@media(max-width:700px){.grid{grid-template-columns:1fr}main{margin:0;padding:20px}}@media print{body{background:#fff}.print-actions{display:none}main{margin:0;max-width:none}.panel{break-inside:avoid}.day-block{break-inside:avoid}}
+</style></head><body><div class="print-actions"><button onclick="window.print()">Print / Save as PDF</button></div><main>
+<div class="brand"><div><h1>Global Holidayz</h1><div class="muted">FIT Package Proposal</div></div><div><strong>Dubai, UAE</strong><br><span class="muted">${state.startDate} to ${addDays(state.startDate,5)}</span></div></div>
+<div class="grid"><div><section class="panel"><h2>5 Nights / 6 Days in Dubai</h2><ul class="summary-list">${summary}</ul></section><section class="panel"><h2>Day-by-Day Itinerary</h2>${itinerary}</section></div>
+<aside><section class="panel"><h3>Price Summary</h3>${priceRows}<p><strong>Total: ${total}</strong></p></section></aside></div>
+<section class="panel"><h3>Terms &amp; Conditions</h3>${terms}</section>
+</main></body></html>`);
+      preview.document.close();
     }
 
     async function publishPackage() {
