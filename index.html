@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NexusDMC FIT Package Builder - Create My Trip</title>
+  <title>Global Holidayz FIT Package Builder</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -172,6 +172,12 @@
     .addon-name { font-size: 0.82rem; font-weight: 600; color: var(--gray-800); }
     .addon-desc { font-size: 0.7rem; color: var(--gray-400); margin-top: 0.1rem; }
     .addon-price { font-size: 0.85rem; font-weight: 700; color: var(--gray-900); white-space: nowrap; }
+    .addon-remove { margin-top: 0.55rem; }
+    .activity-actions { margin-top: 0.55rem; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    button:focus-visible, select:focus-visible, input:focus-visible, .hotel-option:focus-visible {
+      outline: 3px solid rgba(37,99,235,.35); outline-offset: 2px;
+    }
     .itinerary-timeline { position: relative; padding-left: 1.5rem; }
     .itinerary-timeline::before {
       content: ''; position: absolute; left: 5px; top: 0; bottom: 0;
@@ -354,9 +360,9 @@
   <header class="header">
     <div class="header-inner">
       <div class="brand">
-        <div class="brand-logo">N</div>
+        <div class="brand-logo">GH</div>
         <div class="brand-text">
-          <h1>Create My Trip</h1>
+          <h1>Global Holidayz</h1>
           <p>FIT Package Builder</p>
         </div>
       </div>
@@ -518,11 +524,11 @@
         </div>
         <div class="price-body">
           <div class="price-row">
-            <span class="label">Market Price</span>
+            <span class="label">Subtotal</span>
             <span class="value strike" id="market-price">AED 2,400</span>
           </div>
           <div class="price-row">
-            <span class="label savings">Total Savings</span>
+            <span class="label savings">Package Discount</span>
             <span class="value savings" id="total-savings">-AED 564</span>
           </div>
           <div class="price-divider"></div>
@@ -542,16 +548,12 @@
             <span class="label">Insurance</span>
             <span class="value" id="price-insurance">AED 0</span>
           </div>
-          <div class="price-row" id="price-addons-row" style="display:none;">
-            <span class="label">Add-ons</span>
-            <span class="value" id="price-addons">AED 0</span>
-          </div>
           <div class="price-divider"></div>
           <div class="price-total">
             <span class="label">Total Price</span>
             <span class="amount" id="total-price">AED 1,836</span>
           </div>
-          <p class="price-tax">Including all taxes &amp; service fees</p>
+          <p class="price-tax">Illustrative package pricing in AED. Final price is subject to availability.</p>
         </div>
         <div class="price-actions">
           <button class="btn btn-secondary btn-block" onclick="saveQuote()">
@@ -582,10 +584,10 @@
   </div>
 
   <!-- Hotel Modal -->
-  <div class="modal-overlay" id="hotel-modal">
+  <div class="modal-overlay" id="hotel-modal" role="dialog" aria-modal="true" aria-labelledby="hotel-modal-title">
     <div class="modal">
       <div class="modal-header">
-        <h3><i class="fas fa-hotel" style="margin-right:0.5rem;color:var(--primary);"></i>Select Hotel</h3>
+        <h3 id="hotel-modal-title"><i class="fas fa-hotel" style="margin-right:0.5rem;color:var(--primary);"></i>Select Hotel</h3>
         <button class="modal-close" onclick="closeHotelModal()"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body" id="hotel-list"></div>
@@ -593,10 +595,10 @@
   </div>
 
   <!-- Room Modal -->
-  <div class="modal-overlay" id="room-modal">
+  <div class="modal-overlay" id="room-modal" role="dialog" aria-modal="true" aria-labelledby="room-modal-title">
     <div class="modal" style="max-width:420px;">
       <div class="modal-header">
-        <h3><i class="fas fa-bed" style="margin-right:0.5rem;color:var(--primary);"></i>Select Room Type</h3>
+        <h3 id="room-modal-title"><i class="fas fa-bed" style="margin-right:0.5rem;color:var(--primary);"></i>Select Room Type</h3>
         <button class="modal-close" onclick="closeRoomModal()"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body" id="room-list"></div>
@@ -610,7 +612,7 @@
     // ===================== DATA =====================
     const hotels = [
       {
-        id: 1, name: 'Citymax Hotel Bur Dubai', stars: 3, price: 918,
+        id: 1, name: 'Citymax Hotel Bur Dubai', stars: 3, price: 368,
         img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop&q=80',
         desc: 'Located in the heart of Bur Dubai, close to metro and shopping.',
         rooms: [
@@ -621,7 +623,7 @@
         ]
       },
       {
-        id: 2, name: 'Howard Johnson Bur Dubai', stars: 3, price: 1020,
+        id: 2, name: 'Howard Johnson Bur Dubai', stars: 3, price: 408,
         img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&h=300&fit=crop&q=80',
         desc: 'Comfortable stay with modern amenities and easy city access.',
         rooms: [
@@ -632,7 +634,7 @@
         ]
       },
       {
-        id: 3, name: 'City Seasons Towers Hotel', stars: 4, price: 1250,
+        id: 3, name: 'City Seasons Towers Hotel', stars: 4, price: 500,
         img: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=300&fit=crop&q=80',
         desc: 'Elegant 4-star property with rooftop pool and fine dining.',
         rooms: [
@@ -643,7 +645,7 @@
         ]
       },
       {
-        id: 4, name: 'Novotel Bur Dubai', stars: 4, price: 1380,
+        id: 4, name: 'Novotel Bur Dubai', stars: 4, price: 552,
         img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=300&fit=crop&q=80',
         desc: 'Premium 4-star with spa, pool, and international restaurants.',
         rooms: [
@@ -654,7 +656,7 @@
         ]
       },
       {
-        id: 5, name: 'JW Marriott Marquis Dubai', stars: 5, price: 1850,
+        id: 5, name: 'JW Marriott Marquis Dubai', stars: 5, price: 740,
         img: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=300&fit=crop&q=80',
         desc: 'Iconic twin-tower luxury hotel with world-class dining and spa.',
         rooms: [
@@ -712,6 +714,7 @@
 
     // ===================== INIT =====================
     function init() {
+      restoreSharedQuote();
       renderTransfers();
       renderAddons();
       renderItinerary();
@@ -723,8 +726,8 @@
       const container = document.getElementById('transfers-body');
       container.innerHTML = transferOptions.map(t => `
         <label class="transfer-option">
-          <input type="checkbox" value="${t.id}" ${state.selectedTransfers.includes(t.id) ? 'checked' : ''}
-            onchange="toggleTransfer('${t.id}')" ${t.included && state.selectedTransfers.length === 1 && state.selectedTransfers[0] === t.id ? 'disabled' : ''}>
+          <input type="radio" name="transfer-option" value="${t.id}" ${state.selectedTransfers.includes(t.id) ? 'checked' : ''}
+            onchange="selectTransfer('${t.id}')">
           <div class="transfer-icon"><i class="fas ${t.icon}"></i></div>
           <div class="transfer-info">
             <div class="transfer-name">${t.name}</div>
@@ -788,7 +791,7 @@
         if (act) {
           const day = days.find(d => d.day === act.day);
           if (day) {
-            day.items.push({ time: 'Optional', title: act.name, desc: act.desc, tag: 'addon' });
+            day.items.push({ id: act.id, time: 'Optional', title: act.name, desc: act.desc, tag: 'addon' });
           }
         }
       });
@@ -807,6 +810,7 @@
                 <div class="activity-name">${item.title}</div>
                 <div class="activity-desc">${item.desc}</div>
                 <span class="activity-tag tag-${item.tag}">${item.tag === 'included' ? '&#10003; Included' : item.tag === 'addon' ? '&#10133; Add-on' : 'Optional'}</span>
+                ${item.tag === 'addon' ? `<div class="activity-actions"><button class="btn btn-danger btn-sm" onclick="removeAddon('${item.id}')" aria-label="Remove ${item.title}"><i class="fas fa-trash-alt"></i> Remove</button></div>` : ''}
               </div>
             `).join('')}
           </div>
@@ -815,22 +819,9 @@
     }
 
     // ===================== ACTIONS =====================
-    function toggleTransfer(id) {
-      const idx = state.selectedTransfers.indexOf(id);
-      if (idx > -1) {
-        const t = transferOptions.find(tr => tr.id === id);
-        if (t && t.included && state.selectedTransfers.filter(sid => {
-          const st = transferOptions.find(tr => tr.id === sid);
-          return st && !st.included;
-        }).length === 0 && state.selectedTransfers.length === 1) {
-          showToast('At least one transfer option must be selected', 'warning');
-          renderTransfers();
-          return;
-        }
-        state.selectedTransfers.splice(idx, 1);
-      } else {
-        state.selectedTransfers.push(id);
-      }
+    function selectTransfer(id) {
+      if (!transferOptions.some(t => t.id === id)) return;
+      state.selectedTransfers = [id];
       renderTransfers();
       updateAll();
     }
@@ -941,9 +932,8 @@
 
       const nights = 5;
       const room = state.hotel.rooms[state.roomIndex];
-      const hotelBase = (state.hotel.price + room.priceMod) * nights;
-      const hotelTotal = hotelBase;
-      const marketPrice = hotelTotal * 1.35;
+      const roomCount = Math.max(1, Math.ceil(travelers / 2));
+      const hotelTotal = (state.hotel.price + room.priceMod) * nights * roomCount;
 
       let activityTotal = 0;
       state.addons.forEach(id => {
@@ -958,12 +948,13 @@
       });
 
       const insuranceTotal = state.insurance ? 25 * travelers : 0;
-      const grandTotal = hotelTotal + activityTotal + transferTotal + insuranceTotal;
-      const savings = marketPrice - grandTotal;
+      const subtotal = hotelTotal + activityTotal + transferTotal + insuranceTotal;
+      const savings = Math.round(hotelTotal * 0.10);
+      const grandTotal = subtotal - savings;
 
       // Update sidebar
-      document.getElementById('market-price').textContent = 'AED ' + Math.round(marketPrice).toLocaleString();
-      document.getElementById('total-savings').textContent = '-AED ' + Math.round(savings).toLocaleString();
+      document.getElementById('market-price').textContent = 'AED ' + Math.round(subtotal).toLocaleString();
+      document.getElementById('total-savings').textContent = '-AED ' + savings.toLocaleString();
       document.getElementById('price-hotel').textContent = 'AED ' + Math.round(hotelTotal).toLocaleString();
       document.getElementById('price-activities').textContent = 'AED ' + activityTotal.toLocaleString();
       document.getElementById('price-transfers').textContent = 'AED ' + transferTotal.toLocaleString();
@@ -974,14 +965,6 @@
         document.getElementById('price-insurance').textContent = 'AED ' + insuranceTotal.toLocaleString();
       } else {
         insRow.style.display = 'none';
-      }
-
-      const addonRow = document.getElementById('price-addons-row');
-      if (activityTotal > 0) {
-        addonRow.style.display = 'flex';
-        document.getElementById('price-addons').textContent = 'AED ' + activityTotal.toLocaleString();
-      } else {
-        addonRow.style.display = 'none';
       }
 
       document.getElementById('total-price').textContent = 'AED ' + Math.round(grandTotal).toLocaleString();
@@ -995,6 +978,7 @@
       const list = document.getElementById('trip-summary');
       let html = `
         <li>5 nights in Dubai</li>
+        <li>${Math.max(1, Math.ceil(state.travelers / 2))} room(s) for ${state.travelers} traveler(s)</li>
         <li>Stay at ${state.hotel.name} (${state.hotel.stars}&#9733;)</li>
         <li>Room: ${state.hotel.rooms[state.roomIndex].name}</li>
       `;
@@ -1030,24 +1014,77 @@
     }
 
     // ===================== ACTIONS =====================
-    function saveQuote() {
-      const data = {
+    function getQuoteData() {
+      return {
+        version: 1,
+        reference: 'GH-' + Date.now().toString(36).toUpperCase(),
         destination: 'Dubai',
-        hotel: state.hotel.name,
-        room: state.hotel.rooms[state.roomIndex].name,
+        hotelId: state.hotel.id,
+        roomIndex: state.roomIndex,
         travelers: state.travelers,
         insurance: state.insurance,
-        transfers: state.selectedTransfers,
-        addons: state.addons,
+        transferId: state.selectedTransfers[0],
+        addons: [...state.addons],
         total: document.getElementById('total-price').textContent,
-        date: new Date().toISOString()
+        savedAt: new Date().toISOString()
       };
-      console.log('Quote saved:', data);
-      showToast('Quote saved successfully!', 'success');
     }
 
-    function publishPackage() {
-      showToast('Package published! Share link copied to clipboard.', 'success');
+    function saveQuote() {
+      try {
+        const data = getQuoteData();
+        localStorage.setItem('globalHolidayz:lastQuote', JSON.stringify(data));
+        showToast('Quote ' + data.reference + ' saved on this device.', 'success');
+      } catch (error) {
+        showToast('Quote could not be saved on this device.', 'warning');
+      }
+    }
+
+    function encodeQuote(data) {
+      return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+    }
+
+    function decodeQuote(value) {
+      return JSON.parse(decodeURIComponent(escape(atob(value))));
+    }
+
+    function restoreSharedQuote() {
+      const value = new URLSearchParams(window.location.search).get('quote');
+      if (!value) return;
+      try {
+        const data = decodeQuote(value);
+        const hotel = hotels.find(h => h.id === Number(data.hotelId));
+        if (hotel) {
+          state.hotel = hotel;
+          state.roomIndex = Math.min(Math.max(Number(data.roomIndex) || 0, 0), hotel.rooms.length - 1);
+        }
+        state.travelers = Math.min(Math.max(Number(data.travelers) || 2, 1), 4);
+        state.insurance = Boolean(data.insurance);
+        state.selectedTransfers = transferOptions.some(t => t.id === data.transferId) ? [data.transferId] : ['airport'];
+        state.addons = Array.isArray(data.addons)
+          ? data.addons.filter(id => allActivities.some(a => a.id === id && !a.included))
+          : [];
+        document.getElementById('travelers').value = String(state.travelers);
+        document.getElementById('insurance').checked = state.insurance;
+        document.getElementById('hotel-name').textContent = state.hotel.name;
+        document.getElementById('hotel-img').src = state.hotel.img;
+        document.getElementById('room-type').textContent = state.hotel.rooms[state.roomIndex].name;
+        document.getElementById('hotel-stars').innerHTML = '&#9733;'.repeat(state.hotel.stars) + ' <span>(' + state.hotel.stars + ' Star)</span>';
+      } catch (error) {
+        showToast('This shared quote link is invalid.', 'warning');
+      }
+    }
+
+    async function publishPackage() {
+      const url = new URL(window.location.href);
+      url.search = '';
+      url.searchParams.set('quote', encodeQuote(getQuoteData()));
+      try {
+        await navigator.clipboard.writeText(url.toString());
+        showToast('Shareable package link copied to clipboard.', 'success');
+      } catch (error) {
+        window.prompt('Copy this package link:', url.toString());
+      }
     }
 
     // Close modals on overlay click
@@ -1055,6 +1092,11 @@
       overlay.addEventListener('click', (e) => {
         if (e.target === overlay) overlay.classList.remove('active');
       });
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(modal => modal.classList.remove('active'));
+      }
     });
 
     // Initialize
