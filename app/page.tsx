@@ -224,6 +224,198 @@ const destinations: Destination[] = [
       { title: "Wildlife & Darling Harbour", period: "Morning", description: "Australian wildlife encounter and waterfront leisure.", note: "Attractions usually close by early evening." },
     ],
   },
+  {
+    id: "abu-dhabi", city: "Abu Dhabi", country: "UAE", region: "Middle East",
+    tagline: "Grand architecture, culture and island leisure",
+    image: "https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 1301, name: "Premier Inn Abu Dhabi Capital Centre", stars: 3, nightly: 310, room: "Standard Room" },
+      { id: 1302, name: "Novotel Abu Dhabi Al Bustan", stars: 4, nightly: 470, room: "Superior Room" },
+      { id: 1303, name: "Emirates Palace Mandarin Oriental", stars: 5, nightly: 1850, room: "Deluxe City View Room" },
+    ],
+    highlights: [
+      { title: "Abu Dhabi City Tour", period: "Morning", description: "Sheikh Zayed Grand Mosque, Corniche and Heritage Village.", note: "Modest dress is required at the mosque; complimentary attire may be available." },
+      { title: "Louvre Abu Dhabi", period: "Afternoon", description: "Explore the galleries and iconic dome on Saadiyat Island.", note: "The museum is generally closed on Mondays." },
+      { title: "Yas Island", period: "Full day", description: "Choose Ferrari World, Warner Bros. World or SeaWorld Abu Dhabi.", note: "Operating hours vary by attraction and season." },
+      { title: "Desert Experience", period: "Afternoon", description: "Dune drive, camel experience and dinner at a desert camp.", note: "Not recommended for guests with certain medical conditions or infants." },
+    ],
+  },
+  {
+    id: "doha", city: "Doha", country: "Qatar", region: "Middle East",
+    tagline: "Waterfront elegance, museums and desert landscapes",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 1401, name: "Premier Inn Doha Airport", stars: 3, nightly: 260, room: "Double Room" },
+      { id: 1402, name: "Radisson Blu Hotel Doha", stars: 4, nightly: 450, room: "Superior Room" },
+      { id: 1403, name: "The St. Regis Doha", stars: 5, nightly: 980, room: "Grand Deluxe Room" },
+    ],
+    highlights: [
+      { title: "Doha City Highlights", period: "Morning", description: "Corniche, Katara Cultural Village, The Pearl and West Bay.", note: "Outdoor stops may be shortened during the hottest hours." },
+      { title: "Museum of Islamic Art", period: "Afternoon", description: "Discover Islamic art followed by a walk through MIA Park.", note: "Museum opening hours differ on Fridays." },
+      { title: "Souq Waqif Evening", period: "Evening", description: "Guided walk through the traditional market and dining quarter.", note: "The souq is liveliest after sunset." },
+      { title: "Inland Sea Safari", period: "Full day", description: "4x4 dune experience to Khor Al Adaid near the Saudi border.", note: "Passport details may be required and routing is weather dependent." },
+    ],
+  },
+  {
+    id: "muscat", city: "Muscat", country: "Oman", region: "Middle East",
+    tagline: "Mountain scenery, forts and a graceful coastline",
+    image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 1501, name: "Ramada Encore by Wyndham Muscat Al-Ghubra", stars: 3, nightly: 240, room: "King Room" },
+      { id: 1502, name: "Crowne Plaza Muscat", stars: 4, nightly: 520, room: "Sea View Room" },
+      { id: 1503, name: "Al Bustan Palace, a Ritz-Carlton Hotel", stars: 5, nightly: 1100, room: "Deluxe Mountain View" },
+    ],
+    highlights: [
+      { title: "Muscat City Tour", period: "Morning", description: "Sultan Qaboos Grand Mosque, Mutrah Souq and the old city.", note: "The mosque has restricted visitor hours and a modest dress code." },
+      { title: "Nizwa & Jabal Akhdar", period: "Full day", description: "Historic fort, traditional souq and mountain viewpoints.", note: "A 4x4 vehicle is required for the upper mountain road." },
+      { title: "Wadi Shab", period: "Full day", description: "Coastal drive and guided hike through a dramatic wadi.", note: "Good mobility and suitable footwear are essential." },
+      { title: "Dolphin Watching", period: "Morning", description: "Boat trip along Muscat's rugged coastline.", note: "Sailing is subject to sea conditions; sightings are not guaranteed." },
+    ],
+  },
+  {
+    id: "cairo", city: "Cairo", country: "Egypt", region: "Africa",
+    tagline: "Ancient wonders and energetic city culture",
+    image: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 1601, name: "Steigenberger Hotel El Tahrir", stars: 3, nightly: 310, room: "Superior City View" },
+      { id: 1602, name: "Cairo Marriott Hotel", stars: 4, nightly: 520, room: "Deluxe Room" },
+      { id: 1603, name: "Marriott Mena House Cairo", stars: 5, nightly: 980, room: "Deluxe Pyramid View" },
+    ],
+    highlights: [
+      { title: "Giza Pyramids & Sphinx", period: "Morning", description: "Guided visit to the Giza plateau and its ancient monuments.", note: "Interior pyramid tickets are limited and sold separately." },
+      { title: "Grand Egyptian Museum", period: "Afternoon", description: "Explore Egypt's extraordinary archaeological collection.", note: "Gallery access and operating hours may change during phased openings." },
+      { title: "Old Cairo", period: "Morning", description: "Citadel, historic mosques and Coptic Cairo landmarks.", note: "Modest dress is recommended at religious sites." },
+      { title: "Nile Dinner Cruise", period: "Evening", description: "Evening cruise with dinner and live entertainment.", note: "Boarding normally begins 30–45 minutes before sailing." },
+    ],
+  },
+  {
+    id: "amman", city: "Amman", country: "Jordan", region: "Middle East",
+    tagline: "Roman heritage and gateways to Jordan's wonders",
+    image: "https://images.unsplash.com/photo-1539650116574-4b3e7e981ad6?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 1701, name: "ibis Amman", stars: 3, nightly: 230, room: "Standard Double Room" },
+      { id: 1702, name: "Amman Rotana", stars: 4, nightly: 480, room: "Classic Room" },
+      { id: 1703, name: "Four Seasons Hotel Amman", stars: 5, nightly: 1080, room: "Deluxe Room" },
+    ],
+    highlights: [
+      { title: "Amman Heritage Tour", period: "Morning", description: "Citadel, Roman Theatre and downtown food streets.", note: "The Citadel is exposed; sun protection is recommended." },
+      { title: "Petra", period: "Full day", description: "Walk through the Siq to the Treasury and ancient city.", note: "The visit involves considerable walking on uneven ground." },
+      { title: "Dead Sea", period: "Full day", description: "Relax at a resort beach on the lowest point on Earth.", note: "Avoid swimming after shaving or with open cuts." },
+      { title: "Jerash", period: "Morning", description: "Explore one of the region's best-preserved Roman cities.", note: "Comfortable walking shoes and water are advised." },
+    ],
+  },
+  {
+    id: "mauritius", city: "Mauritius", country: "Mauritius", region: "Indian Ocean",
+    tagline: "Lagoon beaches, mountain scenery and island culture",
+    image: "https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 1801, name: "Veranda Grand Baie Hotel & Spa", stars: 3, nightly: 470, room: "Comfort Room" },
+      { id: 1802, name: "Lagoon Attitude", stars: 4, nightly: 820, room: "Couple Room" },
+      { id: 1803, name: "LUX* Belle Mare", stars: 5, nightly: 1450, room: "Junior Suite" },
+    ],
+    highlights: [
+      { title: "South Island Discovery", period: "Full day", description: "Chamarel, waterfalls, volcanic landscapes and scenic viewpoints.", note: "Mountain weather can change quickly." },
+      { title: "Île aux Cerfs", period: "Full day", description: "Boat excursion to beaches and lagoon activities.", note: "Boat timings depend on sea conditions." },
+      { title: "Pamplemousses & Port Louis", period: "Morning", description: "Botanical garden, waterfront and central market.", note: "The central market is busiest before midday." },
+      { title: "Catamaran Cruise", period: "Full day", description: "Sailing, snorkelling and lunch in a sheltered lagoon.", note: "Route and swimming stops are weather dependent." },
+    ],
+  },
+  {
+    id: "kuala-lumpur", city: "Kuala Lumpur", country: "Malaysia", region: "Asia",
+    tagline: "Skyline landmarks, food streets and rainforest escapes",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 1901, name: "Holiday Inn Express Kuala Lumpur City Centre", stars: 3, nightly: 220, room: "Standard Room" },
+      { id: 1902, name: "Traders Hotel Kuala Lumpur", stars: 4, nightly: 450, room: "Deluxe Room" },
+      { id: 1903, name: "Mandarin Oriental Kuala Lumpur", stars: 5, nightly: 760, room: "Park View Room" },
+    ],
+    highlights: [
+      { title: "Kuala Lumpur Highlights", period: "Morning", description: "Petronas Towers, Merdeka Square and historic districts.", note: "Petronas observation tickets require timed reservations." },
+      { title: "Batu Caves", period: "Morning", description: "Visit the colourful Hindu shrine and limestone caves.", note: "The main cave is reached by 272 steps; modest dress is advised." },
+      { title: "Genting Highlands", period: "Full day", description: "Mountain resort visit with cable-car views and leisure time.", note: "Cable-car operation is subject to weather and maintenance." },
+      { title: "Food & Night Market", period: "Evening", description: "Explore Jalan Alor and Kuala Lumpur's evening food culture.", note: "Bring cash for smaller market vendors." },
+    ],
+  },
+  {
+    id: "phuket", city: "Phuket", country: "Thailand", region: "Asia",
+    tagline: "Andaman beaches, island cruises and lively evenings",
+    image: "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2001, name: "ibis Phuket Patong", stars: 3, nightly: 230, room: "Standard Room" },
+      { id: 2002, name: "Four Points by Sheraton Phuket Patong Beach", stars: 4, nightly: 460, room: "Superior Room" },
+      { id: 2003, name: "The Shore at Katathani", stars: 5, nightly: 1320, room: "Pool Villa" },
+    ],
+    highlights: [
+      { title: "Phuket Island Tour", period: "Morning", description: "Old Town, hilltop viewpoints and Wat Chalong.", note: "Temple visits require respectful clothing." },
+      { title: "Phi Phi Islands", period: "Full day", description: "Speedboat cruise with swimming and island stops.", note: "Routing is subject to marine-park rules and sea conditions." },
+      { title: "Phang Nga Bay", period: "Full day", description: "Explore limestone scenery and sea-cave lagoons.", note: "Canoeing depends on tides and weather." },
+      { title: "Siam Niramit", period: "Evening", description: "Cultural performance with optional dinner and transfers.", note: "Show days vary; advance reservation is recommended." },
+    ],
+  },
+  {
+    id: "hanoi", city: "Hanoi", country: "Vietnam", region: "Asia",
+    tagline: "Old-quarter character and spectacular northern landscapes",
+    image: "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2101, name: "La Siesta Classic Ma May", stars: 3, nightly: 250, room: "Deluxe Room" },
+      { id: 2102, name: "Pan Pacific Hanoi", stars: 4, nightly: 460, room: "Deluxe Lake View" },
+      { id: 2103, name: "Sofitel Legend Metropole Hanoi", stars: 5, nightly: 1050, room: "Luxury Room" },
+    ],
+    highlights: [
+      { title: "Hanoi City Discovery", period: "Morning", description: "Old Quarter, Temple of Literature and Hoan Kiem Lake.", note: "Some monuments close for lunch." },
+      { title: "Street Food Walk", period: "Evening", description: "Guided tastings through Hanoi's atmospheric old streets.", note: "Dietary requirements should be advised in advance." },
+      { title: "Ha Long Bay Cruise", period: "Full day", description: "Cruise among limestone islands with lunch and cave visits.", note: "The itinerary is subject to port authority and weather conditions." },
+      { title: "Ninh Binh", period: "Full day", description: "River sampan journey through karst scenery and countryside.", note: "Sun protection is recommended for the open boat journey." },
+    ],
+  },
+  {
+    id: "seoul", city: "Seoul", country: "South Korea", region: "Asia",
+    tagline: "Royal heritage, design districts and Korean flavours",
+    image: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2201, name: "Nine Tree Hotel Myeongdong", stars: 3, nightly: 330, room: "Standard Double" },
+      { id: 2202, name: "L7 Hongdae", stars: 4, nightly: 520, room: "Superior Room" },
+      { id: 2203, name: "Signiel Seoul", stars: 5, nightly: 1450, room: "Premier Room" },
+    ],
+    highlights: [
+      { title: "Royal Seoul", period: "Morning", description: "Gyeongbokgung Palace, Bukchon and Insadong.", note: "Gyeongbokgung is generally closed on Tuesdays." },
+      { title: "Modern Seoul", period: "Afternoon", description: "Gangnam, COEX and a Han River viewpoint.", note: "Traffic can affect transfer times." },
+      { title: "DMZ Excursion", period: "Full day", description: "Guided visit to key Korean Demilitarized Zone sites.", note: "Passport is mandatory and sites may close without notice." },
+      { title: "Markets & Korean Food", period: "Evening", description: "Gwangjang Market tastings and vibrant evening streets.", note: "Many vendors accept cash or local payment methods." },
+    ],
+  },
+  {
+    id: "amsterdam", city: "Amsterdam", country: "Netherlands", region: "Europe",
+    tagline: "Canals, masterpieces and charming neighbourhoods",
+    image: "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2301, name: "ibis Amsterdam Centre", stars: 3, nightly: 520, room: "Standard Room" },
+      { id: 2302, name: "Park Centraal Amsterdam", stars: 4, nightly: 780, room: "Deluxe Room" },
+      { id: 2303, name: "Conservatorium Hotel", stars: 5, nightly: 1750, room: "Deluxe Guest Room" },
+    ],
+    highlights: [
+      { title: "Canal Cruise & Old Centre", period: "Morning", description: "Cruise the canal ring and explore historic central streets.", note: "Boat routes may change during major events." },
+      { title: "Van Gogh Museum", period: "Afternoon", description: "Timed museum visit followed by Museumplein leisure.", note: "Advance timed admission is essential." },
+      { title: "Zaanse Schans", period: "Morning", description: "Windmills, traditional crafts and Dutch countryside.", note: "Some workshops operate reduced winter hours." },
+      { title: "Keukenhof & Tulip Fields", period: "Full day", description: "Seasonal excursion to spring gardens and flower landscapes.", note: "Available only during the spring opening season." },
+    ],
+  },
+  {
+    id: "barcelona", city: "Barcelona", country: "Spain", region: "Europe",
+    tagline: "Gaudí landmarks, Mediterranean streets and coastal energy",
+    image: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2401, name: "Hotel Jazz Barcelona", stars: 3, nightly: 460, room: "Double Room" },
+      { id: 2402, name: "H10 Madison", stars: 4, nightly: 760, room: "Classic Room" },
+      { id: 2403, name: "Mandarin Oriental Barcelona", stars: 5, nightly: 1950, room: "Deluxe Garden Room" },
+    ],
+    highlights: [
+      { title: "Gaudí Barcelona", period: "Morning", description: "Sagrada Família and Passeig de Gràcia architectural icons.", note: "Timed admission and passport details may be required." },
+      { title: "Gothic Quarter", period: "Afternoon", description: "Walk medieval lanes, plazas and the historic cathedral area.", note: "The route is mostly pedestrian and includes uneven paving." },
+      { title: "Park Güell & Montjuïc", period: "Full day", description: "Colourful Gaudí design followed by panoramic city viewpoints.", note: "Park Güell monumental-zone admission is timed." },
+      { title: "Montserrat", period: "Full day", description: "Mountain monastery excursion with spectacular scenery.", note: "Mountain weather can be cooler than Barcelona." },
+    ],
+  },
 ];
 
 const transferOptions = [
