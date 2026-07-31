@@ -416,6 +416,262 @@ const destinations: Destination[] = [
       { title: "Montserrat", period: "Full day", description: "Mountain monastery excursion with spectacular scenery.", note: "Mountain weather can be cooler than Barcelona." },
     ],
   },
+  {
+    id: "zurich", city: "Zurich", country: "Switzerland", region: "Europe",
+    tagline: "Lakeside elegance and easy Alpine escapes",
+    image: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2501, name: "ibis Styles Zurich City Center", stars: 3, nightly: 560, room: "Standard Room" },
+      { id: 2502, name: "Hotel St. Gotthard", stars: 4, nightly: 820, room: "Comfort Room" },
+      { id: 2503, name: "Baur au Lac", stars: 5, nightly: 2100, room: "Deluxe Room" },
+    ],
+    highlights: [
+      { title: "Zurich Old Town", period: "Morning", description: "Guided walk through medieval lanes, Bahnhofstrasse and the lakefront.", note: "Most shops are closed on Sundays." },
+      { title: "Rhine Falls", period: "Afternoon", description: "Scenic excursion to Europe's most powerful waterfall.", note: "Boat operations are seasonal and weather dependent." },
+      { title: "Mount Titlis", period: "Full day", description: "Alpine journey with revolving cable car and snow experiences.", note: "High-altitude weather may affect cable-car operations." },
+      { title: "Lucerne", period: "Full day", description: "Visit Chapel Bridge, the lake promenade and historic centre.", note: "Optional lake cruises follow seasonal timetables." },
+    ],
+  },
+  {
+    id: "vienna", city: "Vienna", country: "Austria", region: "Europe",
+    tagline: "Imperial palaces, music and café culture",
+    image: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2601, name: "Motel One Wien-Staatsoper", stars: 3, nightly: 480, room: "Queen Room" },
+      { id: 2602, name: "Austria Trend Hotel Europa Wien", stars: 4, nightly: 680, room: "Comfort Room" },
+      { id: 2603, name: "Hotel Sacher Wien", stars: 5, nightly: 1800, room: "Deluxe Room" },
+    ],
+    highlights: [
+      { title: "Imperial Vienna", period: "Morning", description: "Ringstrasse, Hofburg courtyards and St Stephen's Cathedral.", note: "Cathedral access may be restricted during services." },
+      { title: "Schönbrunn Palace", period: "Afternoon", description: "Tour the imperial rooms and landscaped palace grounds.", note: "Timed palace admission is recommended." },
+      { title: "Danube Valley", period: "Full day", description: "Explore the Wachau landscapes, villages and Melk Abbey.", note: "River cruises are seasonal." },
+      { title: "Vienna Concert", period: "Evening", description: "Classical performance in an elegant historic venue.", note: "Dress code and programme vary by venue." },
+    ],
+  },
+  {
+    id: "prague", city: "Prague", country: "Czechia", region: "Europe",
+    tagline: "Gothic spires, castle views and riverside charm",
+    image: "https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2701, name: "ibis Praha Old Town", stars: 3, nightly: 350, room: "Standard Room" },
+      { id: 2702, name: "Hotel Kings Court", stars: 4, nightly: 590, room: "Deluxe Room" },
+      { id: 2703, name: "Four Seasons Hotel Prague", stars: 5, nightly: 1550, room: "Deluxe Room" },
+    ],
+    highlights: [
+      { title: "Prague Old Town", period: "Morning", description: "Astronomical Clock, Old Town Square and Jewish Quarter.", note: "The route is pedestrian with cobbled surfaces." },
+      { title: "Prague Castle", period: "Afternoon", description: "Castle courtyards, St Vitus Cathedral and Golden Lane.", note: "Security queues can be longer during peak season." },
+      { title: "Vltava Dinner Cruise", period: "Evening", description: "Evening cruise with buffet dinner and illuminated landmarks.", note: "Boarding begins before the published sailing time." },
+      { title: "Český Krumlov", period: "Full day", description: "Day trip to the UNESCO-listed riverside town.", note: "The castle interiors have seasonal opening dates." },
+    ],
+  },
+  {
+    id: "athens", city: "Athens", country: "Greece", region: "Europe",
+    tagline: "Ancient landmarks and lively Mediterranean streets",
+    image: "https://images.unsplash.com/photo-1555993539-1732b0258235?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2801, name: "Athens Center Square Hotel", stars: 3, nightly: 360, room: "Standard Room" },
+      { id: 2802, name: "Electra Metropolis Athens", stars: 4, nightly: 690, room: "Classic Room" },
+      { id: 2803, name: "Hotel Grande Bretagne", stars: 5, nightly: 1450, room: "Deluxe Room" },
+    ],
+    highlights: [
+      { title: "Acropolis & Museum", period: "Morning", description: "Guided Acropolis visit followed by its celebrated museum.", note: "Early entry is recommended in summer heat." },
+      { title: "Athens City Highlights", period: "Afternoon", description: "Syntagma Square, Plaka and panoramic city landmarks.", note: "Changing of the Guard takes place hourly." },
+      { title: "Cape Sounion", period: "Afternoon", description: "Coastal drive to the Temple of Poseidon for sunset.", note: "Sunset timing varies considerably by season." },
+      { title: "Saronic Islands Cruise", period: "Full day", description: "Cruise to picturesque islands with onboard lunch.", note: "Island sequence is subject to port conditions." },
+    ],
+  },
+  {
+    id: "lisbon", city: "Lisbon", country: "Portugal", region: "Europe",
+    tagline: "Colourful hills, coastal history and Atlantic flavours",
+    image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 2901, name: "Hotel Gat Rossio", stars: 3, nightly: 390, room: "Standard Room" },
+      { id: 2902, name: "Lisboa Pessoa Hotel", stars: 4, nightly: 620, room: "Double Room" },
+      { id: 2903, name: "Four Seasons Hotel Ritz Lisbon", stars: 5, nightly: 1700, room: "Deluxe City View" },
+    ],
+    highlights: [
+      { title: "Historic Lisbon", period: "Morning", description: "Belém Tower, Jerónimos area and riverside monuments.", note: "Jerónimos Monastery is generally closed on Mondays." },
+      { title: "Alfama & Tram Districts", period: "Afternoon", description: "Explore viewpoints and atmospheric old neighbourhoods.", note: "The route includes steep slopes and uneven paving." },
+      { title: "Sintra & Cascais", period: "Full day", description: "Palaces, forested hills and the Atlantic coast.", note: "Pena Palace requires a timed entry slot." },
+      { title: "Fado Evening", period: "Evening", description: "Traditional Portuguese dinner with a live Fado performance.", note: "Performances commonly begin after 20:00." },
+    ],
+  },
+  {
+    id: "copenhagen", city: "Copenhagen", country: "Denmark", region: "Europe",
+    tagline: "Nordic design, canals and storybook streets",
+    image: "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3001, name: "Wakeup Copenhagen Borgergade", stars: 3, nightly: 480, room: "Standard Room" },
+      { id: 3002, name: "Tivoli Hotel", stars: 4, nightly: 720, room: "Superior Room" },
+      { id: 3003, name: "Hotel d'Angleterre", stars: 5, nightly: 1950, room: "Deluxe Room" },
+    ],
+    highlights: [
+      { title: "Copenhagen Highlights", period: "Morning", description: "Nyhavn, Amalienborg, the Little Mermaid and old harbour.", note: "Changing of the Guard is normally around midday." },
+      { title: "Canal Cruise", period: "Afternoon", description: "See palaces, churches and modern waterfront architecture.", note: "Some departures are reduced during winter." },
+      { title: "Tivoli Gardens", period: "Evening", description: "Historic amusement gardens, dining and seasonal entertainment.", note: "Tivoli has seasonal opening periods." },
+      { title: "North Zealand Castles", period: "Full day", description: "Visit Kronborg and Frederiksborg castles.", note: "Castle opening days vary outside summer." },
+    ],
+  },
+  {
+    id: "belgrade", city: "Belgrade", country: "Serbia", region: "Europe",
+    tagline: "Fortress history and energetic riverside culture",
+    image: "https://images.unsplash.com/photo-1569959220744-ff553533f492?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3101, name: "Hotel Bohemian Garni", stars: 3, nightly: 260, room: "Standard Room" },
+      { id: 3102, name: "Hotel Moskva", stars: 4, nightly: 480, room: "Premium Room" },
+      { id: 3103, name: "Saint Ten Hotel", stars: 5, nightly: 820, room: "Executive Room" },
+    ],
+    highlights: [
+      { title: "Belgrade City Tour", period: "Morning", description: "Republic Square, Knez Mihailova and historic quarters.", note: "Central touring is mainly on foot." },
+      { title: "Kalemegdan Fortress", period: "Afternoon", description: "Explore the fortress and Danube–Sava viewpoints.", note: "Some museum sections close on Mondays." },
+      { title: "Danube Evening Cruise", period: "Evening", description: "Relax on the rivers with city lights and dinner options.", note: "Cruises are seasonal and weather dependent." },
+      { title: "Novi Sad", period: "Full day", description: "Visit Petrovaradin Fortress and the city's elegant centre.", note: "Festival dates can affect access and traffic." },
+    ],
+  },
+  {
+    id: "tirana", city: "Tirana", country: "Albania", region: "Europe",
+    tagline: "Colourful capital and gateways to Adriatic heritage",
+    image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3201, name: "Hotel Opera Tirana", stars: 3, nightly: 250, room: "Standard Room" },
+      { id: 3202, name: "Maritim Hotel Plaza Tirana", stars: 4, nightly: 440, room: "Deluxe Room" },
+      { id: 3203, name: "Rogner Hotel Tirana", stars: 5, nightly: 620, room: "Superior Room" },
+    ],
+    highlights: [
+      { title: "Tirana Discovery", period: "Morning", description: "Skanderbeg Square, Bunk'Art and the colourful city centre.", note: "Museum closure days vary." },
+      { title: "Dajti Mountain", period: "Afternoon", description: "Cable-car journey for panoramic views and leisure time.", note: "Cable-car operation is weather dependent." },
+      { title: "Berat", period: "Full day", description: "Explore the UNESCO-listed city of a thousand windows.", note: "The castle area includes steep cobbled paths." },
+      { title: "Krujë", period: "Morning", description: "Historic castle, museum and traditional bazaar.", note: "Many bazaar shops prefer cash payments." },
+    ],
+  },
+  {
+    id: "cape-town", city: "Cape Town", country: "South Africa", region: "Africa",
+    tagline: "Mountain drama, vineyards and ocean scenery",
+    image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3301, name: "StayEasy Cape Town City Bowl", stars: 3, nightly: 310, room: "Standard Room" },
+      { id: 3302, name: "The President Hotel", stars: 4, nightly: 580, room: "Classic Room" },
+      { id: 3303, name: "One&Only Cape Town", stars: 5, nightly: 1650, room: "Marina Harbour Room" },
+    ],
+    highlights: [
+      { title: "Cape Town City & Table Mountain", period: "Morning", description: "City highlights with cableway access to Table Mountain.", note: "Cableway operation depends on wind and visibility." },
+      { title: "Cape Peninsula", period: "Full day", description: "Chapman's Peak, Cape Point and the penguins at Boulders Beach.", note: "The coastal route may change during road closures." },
+      { title: "Winelands", period: "Full day", description: "Stellenbosch and Franschhoek scenery with cellar tastings.", note: "Guests must meet the legal drinking age for tastings." },
+      { title: "Robben Island", period: "Afternoon", description: "Ferry and guided historical tour of the island.", note: "Ferries are frequently affected by sea conditions." },
+    ],
+  },
+  {
+    id: "nairobi", city: "Nairobi", country: "Kenya", region: "Africa",
+    tagline: "Urban energy and unforgettable wildlife gateways",
+    image: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3401, name: "ibis Styles Nairobi Westlands", stars: 3, nightly: 280, room: "Standard Room" },
+      { id: 3402, name: "Sarova Panafric", stars: 4, nightly: 480, room: "Deluxe Room" },
+      { id: 3403, name: "Hemingways Nairobi", stars: 5, nightly: 1150, room: "Deluxe Suite" },
+    ],
+    highlights: [
+      { title: "Nairobi National Park", period: "Morning", description: "Game drive with city-skyline views beyond the savannah.", note: "Wildlife sightings vary and early departure is recommended." },
+      { title: "Giraffe Centre & Karen Blixen", period: "Afternoon", description: "Conservation encounter and historic museum visit.", note: "Animal interactions follow conservation-centre rules." },
+      { title: "Lake Naivasha", period: "Full day", description: "Great Rift Valley scenery and optional boat safari.", note: "Boat operation depends on lake and weather conditions." },
+      { title: "Maasai Mara Extension", period: "Full day", description: "Fly or drive to Kenya's celebrated wildlife reserve.", note: "A minimum two-night extension is recommended." },
+    ],
+  },
+  {
+    id: "colombo", city: "Colombo", country: "Sri Lanka", region: "Asia",
+    tagline: "Coastal culture and gateways to a tropical island",
+    image: "https://images.unsplash.com/photo-1588258524675-c619e2f82da2?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3501, name: "Fairway Colombo", stars: 3, nightly: 230, room: "Superior Room" },
+      { id: 3502, name: "Cinnamon Lakeside Colombo", stars: 4, nightly: 420, room: "Premium Room" },
+      { id: 3503, name: "Shangri-La Colombo", stars: 5, nightly: 720, room: "Deluxe Ocean View" },
+    ],
+    highlights: [
+      { title: "Colombo City Tour", period: "Morning", description: "Fort district, temples, markets and Galle Face Green.", note: "Religious sites require modest clothing and footwear removal." },
+      { title: "Galle Fort", period: "Full day", description: "Coastal journey to the UNESCO-listed Dutch fort.", note: "Southern highway travel time depends on traffic." },
+      { title: "Kandy", period: "Full day", description: "Hill-country scenery and the Temple of the Sacred Tooth.", note: "Temple visitors must cover shoulders and knees." },
+      { title: "Bentota Coast", period: "Full day", description: "Beach leisure with optional river safari and water sports.", note: "Water activities depend on monsoon and sea conditions." },
+    ],
+  },
+  {
+    id: "siem-reap", city: "Siem Reap", country: "Cambodia", region: "Asia",
+    tagline: "Angkor temples and warm Khmer hospitality",
+    image: "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3601, name: "Central Suite Residence", stars: 3, nightly: 210, room: "Deluxe Room" },
+      { id: 3602, name: "Borei Angkor Resort & Spa", stars: 4, nightly: 390, room: "Landmark Room" },
+      { id: 3603, name: "Raffles Grand Hotel d'Angkor", stars: 5, nightly: 920, room: "State Room" },
+    ],
+    highlights: [
+      { title: "Angkor Wat Sunrise", period: "Morning", description: "Early visit to Angkor Wat followed by major temple sites.", note: "A valid Angkor pass and modest clothing are required." },
+      { title: "Angkor Thom & Ta Prohm", period: "Afternoon", description: "Explore ancient gates, Bayon faces and jungle-covered ruins.", note: "Temple paths are uneven with steps." },
+      { title: "Tonlé Sap Lake", period: "Afternoon", description: "Boat journey through a seasonal floating-village landscape.", note: "Routes change substantially with water levels." },
+      { title: "Khmer Dining & Dance", period: "Evening", description: "Dinner accompanied by a traditional Apsara performance.", note: "Advance seating reservation is recommended." },
+    ],
+  },
+  {
+    id: "almaty", city: "Almaty", country: "Kazakhstan", region: "Central Asia",
+    tagline: "Mountain horizons, lakes and Silk Road character",
+    image: "https://images.unsplash.com/photo-1533130061792-64b345e4a833?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3701, name: "ibis Almaty Jetisu", stars: 3, nightly: 240, room: "Standard Room" },
+      { id: 3702, name: "Novotel Almaty City Center", stars: 4, nightly: 430, room: "Superior Room" },
+      { id: 3703, name: "The Ritz-Carlton Almaty", stars: 5, nightly: 1050, room: "Deluxe Mountain View" },
+    ],
+    highlights: [
+      { title: "Almaty City & Kok Tobe", period: "Afternoon", description: "City landmarks, mountain views and cable-car experience.", note: "Cable-car operation depends on weather and maintenance." },
+      { title: "Medeu & Shymbulak", period: "Full day", description: "High-mountain sporting landmarks and scenic gondola rides.", note: "Warm layers are recommended even outside winter." },
+      { title: "Charyn Canyon", period: "Full day", description: "Explore dramatic rock formations east of Almaty.", note: "The excursion involves a long drive and uneven walking." },
+      { title: "Kolsai Lakes", period: "Full day", description: "Mountain-lake landscapes and guided nature walks.", note: "Road and trail access are seasonal." },
+    ],
+  },
+  {
+    id: "hong-kong", city: "Hong Kong", country: "Hong Kong SAR", region: "Asia",
+    tagline: "Harbour skylines, markets and island scenery",
+    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3801, name: "Eaton HK", stars: 3, nightly: 420, room: "Eaton Room" },
+      { id: 3802, name: "The Royal Pacific Hotel", stars: 4, nightly: 650, room: "Premier Room" },
+      { id: 3803, name: "The Peninsula Hong Kong", stars: 5, nightly: 1850, room: "Deluxe Courtyard Room" },
+    ],
+    highlights: [
+      { title: "Hong Kong Island", period: "Morning", description: "Victoria Peak, Aberdeen and Central district landmarks.", note: "Peak views depend on cloud and visibility." },
+      { title: "Kowloon Markets", period: "Evening", description: "Temple Street, neon streets and local food discoveries.", note: "Market activity is strongest after sunset." },
+      { title: "Lantau Island", period: "Full day", description: "Ngong Ping cable car, Big Buddha and Tai O village.", note: "Cable-car operation is weather dependent." },
+      { title: "Macau Day Trip", period: "Full day", description: "Ferry excursion to UNESCO heritage streets and resorts.", note: "Passport and entry eligibility must be checked in advance." },
+    ],
+  },
+  {
+    id: "new-york", city: "New York", country: "United States", region: "North America",
+    tagline: "Iconic skylines, neighbourhoods and world-class culture",
+    image: "https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 3901, name: "Pod Times Square", stars: 3, nightly: 690, room: "Full Pod Room" },
+      { id: 3902, name: "New York Marriott Marquis", stars: 4, nightly: 1150, room: "Deluxe Room" },
+      { id: 3903, name: "The Plaza New York", stars: 5, nightly: 2800, room: "Plaza Room" },
+    ],
+    highlights: [
+      { title: "Manhattan Highlights", period: "Full day", description: "Times Square, Fifth Avenue, Central Park and downtown icons.", note: "Traffic may require changes to the touring sequence." },
+      { title: "Statue of Liberty & Ellis Island", period: "Morning", description: "Ferry visit to New York's harbour landmarks.", note: "Security screening is mandatory; crown access is limited." },
+      { title: "Broadway Evening", period: "Evening", description: "Theatre performance with pre-show Times Square leisure.", note: "Show schedules and dark days vary." },
+      { title: "Brooklyn Discovery", period: "Afternoon", description: "Brooklyn Bridge, DUMBO and waterfront skyline views.", note: "The walking route is exposed in poor weather." },
+    ],
+  },
+  {
+    id: "toronto", city: "Toronto", country: "Canada", region: "North America",
+    tagline: "Cosmopolitan neighbourhoods and spectacular falls",
+    image: "https://images.unsplash.com/photo-1517090504586-fde19ea6066f?auto=format&fit=crop&w=1600&q=85",
+    hotels: [
+      { id: 4001, name: "Chelsea Hotel Toronto", stars: 3, nightly: 570, room: "Chelsea Room" },
+      { id: 4002, name: "Sheraton Centre Toronto Hotel", stars: 4, nightly: 820, room: "Guest Room" },
+      { id: 4003, name: "The Ritz-Carlton Toronto", stars: 5, nightly: 1550, room: "Deluxe Lake View" },
+    ],
+    highlights: [
+      { title: "Toronto City Highlights", period: "Morning", description: "CN Tower district, waterfront and major city landmarks.", note: "CN Tower visibility depends on weather." },
+      { title: "Niagara Falls", period: "Full day", description: "Falls viewpoints, seasonal boat cruise and Niagara-on-the-Lake.", note: "Boat cruises operate seasonally; winter itineraries differ." },
+      { title: "Toronto Islands", period: "Afternoon", description: "Ferry ride for parks and skyline panoramas.", note: "Ferry schedules and island services vary by season." },
+      { title: "Multicultural Toronto", period: "Evening", description: "Explore Kensington Market, Chinatown and dining districts.", note: "Some market businesses close earlier on weekdays." },
+    ],
+  },
 ];
 
 const transferOptions = [
