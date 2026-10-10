@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Global Holidayz FIT Package Builder",
   description:
-    "Build, price, share and print a bespoke Dubai FIT package proposal.",
+    "Build, price, share and print a bespoke FIT travel package proposal.",
   other: {
     "codex-preview": "development",
   },

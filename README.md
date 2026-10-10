@@ -106,3 +106,18 @@ The timeout defaults can be overridden for a controlled canary with `SITES_INSTA
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## Quotation validation
+
+The builder and quotation API share the destination catalogue and validation rules.
+Unsupported destination IDs and mismatched city/country labels are rejected rather
+than restored as Dubai. Custom hotel snapshots and edited supplier rates remain
+supported. Saving checks real calendar dates, hotel identity and fields, nonnegative
+finite prices, guest/night limits, transfer options and unique destination experiences.
+The server calculates the saved total from these inputs and rejects a conflicting
+client total. Invalid saved proposals leave the current draft intact and show a load
+error. Calendar calculations are independent of the browser's timezone.
+
+Run `npm run test:quotes` with Node 24 for validation, pricing, persistence and
+calendar regressions. `.github/workflows/quotation-validation.yml` also checks the
+shared TypeScript modules and builds, validates and renders the application.

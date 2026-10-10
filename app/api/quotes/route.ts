@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getChatGPTUser } from "../../chatgpt-auth";
-import { createQuote, validQuoteInput } from "../../../lib/quotes";
+import { createQuote } from "../../../lib/quotes";
+
+import { validQuoteRequest } from "../../../lib/quote-input";
 
 export async function POST(request: Request) {
   const user = await getChatGPTUser();
@@ -15,12 +17,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const candidate = body as { data?: unknown; total?: unknown };
-  if (!validQuoteInput(candidate.data) || !Number.isFinite(candidate.total)) {
+  if (!validQuoteRequest(body)) {
     return NextResponse.json({ error: "Invalid quotation." }, { status: 400 });
   }
 
-  const quote = await createQuote(user.email, candidate.data, Number(candidate.total));
+  const quote = await createQuote(user.email, body.data);
   return NextResponse.json({
     quoteNumber: quote.quoteNumber,
     publicToken: quote.publicToken,
