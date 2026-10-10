@@ -1,19 +1,6 @@
-export type QuoteInput = {
-  destinationId: string;
-  destinationName: string;
-  nights: number;
-  hotelId: number;
-  hotel: { id: number; name: string; stars: number; nightly: number; room: string };
-  experiencePrice: number;
-  transferPrices: Record<string, number>;
-  startDate: string;
-  adults: number;
-  children: number;
-  infants: number;
-  transfer: string;
-  insurance: boolean;
-  addOns: string[];
-};
+import { validQuoteInput, calculateQuoteTotal, type QuoteInput } from "./quote-input.ts";
+export { validQuoteInput } from "./quote-input.ts";
+export type { QuoteInput } from "./quote-input.ts";
 
 export type StoredQuote = {
   quoteNumber: string;
@@ -32,42 +19,12 @@ async function database() {
   return env.DB;
 }
 
-export function validQuoteInput(value: unknown): value is QuoteInput {
-  if (!value || typeof value !== "object") return false;
-  const quote = value as Partial<QuoteInput>;
-  return (
-    typeof quote.destinationId === "string" &&
-    quote.destinationId.length > 0 &&
-    typeof quote.destinationName === "string" &&
-    quote.destinationName.length > 0 &&
-    Number.isInteger(quote.nights) &&
-    Number(quote.nights) >= 2 &&
-    Number(quote.nights) <= 14 &&
-    Number.isInteger(quote.hotelId) &&
-    Boolean(quote.hotel) &&
-    typeof quote.hotel?.name === "string" &&
-    typeof quote.hotel?.room === "string" &&
-    Number.isFinite(quote.hotel?.nightly) &&
-    Number.isFinite(quote.experiencePrice) &&
-    Boolean(quote.transferPrices) &&
-    typeof quote.transferPrices === "object" &&
-    typeof quote.startDate === "string" &&
-    /^\d{4}-\d{2}-\d{2}$/.test(quote.startDate) &&
-    Number.isInteger(quote.adults) &&
-    Number.isInteger(quote.children) &&
-    Number.isInteger(quote.infants) &&
-    typeof quote.transfer === "string" &&
-    typeof quote.insurance === "boolean" &&
-    Array.isArray(quote.addOns) &&
-    quote.addOns.every((item) => typeof item === "string")
-  );
-}
-
 export async function createQuote(
   ownerEmail: string,
   data: QuoteInput,
-  total: number,
 ): Promise<StoredQuote> {
+  if (!validQuoteInput(data)) throw new Error("Invalid quotation.");
+  const total = calculateQuoteTotal(data);
   const id = crypto.randomUUID();
   const publicToken = crypto.randomUUID().replaceAll("-", "");
   const year = new Date().getUTCFullYear();
@@ -98,7 +55,7 @@ export async function createQuote(
     quoteNumber,
     publicToken,
     ownerEmail,
-    destination: "Dubai, UAE",
+    destination: data.destinationName,
     data,
     total: Math.max(0, Math.round(total)),
     createdAt: now,

@@ -1,0 +1,29 @@
+name: Quotation validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  quotations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Quotation and destination regressions
+        run: npm run test:quotes
+      - run: npm ci
+      - name: Check shared quotation modules
+        run: npx tsc --noEmit --target es2022 --module esnext --moduleResolution bundler --allowImportingTsExtensions --skipLibCheck lib/quote-input.ts lib/destinations.ts lib/travel-dates.ts
+      - name: Build application
+        run: bash scripts/sites-env.sh -- timeout --signal=TERM --kill-after=10s 3m node_modules/.bin/vinext build
+      - name: Validate deployment artifact
+        run: bash scripts/sites-env.sh -- bash scripts/validate-artifact.sh
+      - name: Render application
+        run: node --test tests/rendered-html.test.mjs
